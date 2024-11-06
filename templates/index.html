@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPR-AI Calculator</title>
+    
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Compare CPR-AI Calculations</h1>
+
+    <!-- Display Flash Messages (e.g., errors) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/calculate" method="POST">
+        <!-- Performance and Cost Set 1 -->
+        <h3>First Set</h3>
+        <label for="performance1">Performance (e.g., sequences per second):</label><br>
+        <input type="number" step="0.01" id="performance1" name="performance1" required><br><br>
+        <label for="cost1">Cost (e.g., cost per GPU hour in dollars):</label><br>
+        <input type="number" step="0.01" id="cost1" name="cost1" required><br><br>
+
+        <!-- Performance and Cost Set 2 (optional) -->
+        <h3>Second Set (optional)</h3>
+        <label for="performance2">Performance (e.g., sequences per second):</label><br>
+        <input type="number" step="0.01" id="performance2" name="performance2"><br><br>
+        <label for="cost2">Cost (e.g., cost per GPU hour in dollars):</label><br>
+        <input type="number" step="0.01" id="cost2" name="cost2"><br><br>
+
+        <input type="submit" value="Compare CPR">
+    </form>
+</body>
+</html>

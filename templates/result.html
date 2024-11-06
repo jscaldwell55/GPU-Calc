@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPR-AI Results</title>
+    
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CPR-AI Calculation Results</h1>
+
+    <p><strong>First Set:</strong> CPR-AI = {{ cpr1 }}</p>
+
+    {% if cpr2 %}
+        <p><strong>Second Set:</strong> CPR-AI = {{ cpr2 }}</p>
+        <p><strong>Comparison:</strong> 
+            {% if cpr1 > cpr2 %}
+                Set 1 is more cost-effective.
+            {% elif cpr2 > cpr1 %}
+                Set 2 is more cost-effective.
+            {% else %}
+                Both sets are equally cost-effective.
+            {% endif %}
+        </p>
+    {% endif %}
+
+    <a href="/">Go back to calculate again</a>
+</body>
+</html>
